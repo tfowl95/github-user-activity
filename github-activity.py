@@ -16,4 +16,5 @@ def fetch_activity(username):
         return []
     
 response = fetch_activity("tfowl95")
-print(json.dumps(response[1], indent = 4))
+for object in response:
+    print(json.dumps(object, indent = 4))
