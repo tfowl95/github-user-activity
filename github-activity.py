@@ -18,3 +18,4 @@ def fetch_activity(username):
 response = fetch_activity("tfowl95")
 for object in response:
     print(json.dumps(object, indent = 4))
+print()
