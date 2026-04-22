@@ -3,7 +3,8 @@ def dispatch(event):
         "PushEvent": handle_push,
         "DeleteEvent": handle_delete,
         "PullRequestEvent": handle_pull_request,
-        "IssueCommentEvent": handle_issue_comment
+        "IssueCommentEvent": handle_issue_comment,
+        "CreateEvent": handle_create_event
     }
     handlers.get(event["type"], default_handler)(event)
 
@@ -24,6 +25,9 @@ def handle_pull_request(event):
 
 def handle_issue_comment(event):
     print(f"- Added a comment to '{event['repo']['name']}'")
+
+def handle_create_event(event):
+    print(f"- Created branch '{event['payload']['ref']}' in '{event['repo']['name']}'")
 
 def default_handler(event):
     print("in default")
