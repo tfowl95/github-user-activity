@@ -30,4 +30,4 @@ def handle_create_event(event):
     print(f"- Created branch '{event['payload']['ref']}' in '{event['repo']['name']}'")
 
 def default_handler(event):
-    print("in default")
+    print(f"Event Type: {event['type']}, Repo: '{event['repo']['name']}")
