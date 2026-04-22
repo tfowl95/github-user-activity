@@ -27,5 +27,6 @@ if len(sys.argv)>2:
     sys.exit()
 
 user_activities = fetch_activity(user)
+
 for event in user_activities:
     dispatch(event)
