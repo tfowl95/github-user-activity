@@ -2,6 +2,8 @@
 
 import urllib.request
 import json
+import sys
+from handlers import dispatch
 
 def fetch_activity(username):
     url = f"https://api.github.com/users/{username}/events"
@@ -14,8 +16,16 @@ def fetch_activity(username):
     except Exception as e:
         print(f"Error: {e}")
         return []
-    
-response = fetch_activity("tfowl95")
-for object in response:
-    print(json.dumps(object, indent = 4))
-print()
+try:    
+    user = sys.argv[1]
+except IndexError:
+    print("Error: A username must be provided as an argument.")
+    sys.exit()
+
+if len(sys.argv)>2:
+    print("Error: Too many arguments provided. Please provide a single username.")
+    sys.exit()
+
+user_activities = fetch_activity(user)
+for event in user_activities:
+    dispatch(event)
