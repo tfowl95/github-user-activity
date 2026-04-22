@@ -5,7 +5,7 @@ def dispatch(event):
     handlers.get(event["type"], default_handler)(event)
 
 def handle_push_event(event):
-    print("in push")
+    print(f"- Pushed a commit to {event['repo']['name']}")
 
 def default_handler(event):
     print("in default")
