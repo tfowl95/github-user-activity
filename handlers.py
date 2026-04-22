@@ -2,7 +2,8 @@ def dispatch(event):
     handlers = {
         "PushEvent": handle_push,
         "DeleteEvent": handle_delete,
-        "PullRequestEvent": handle_pull_request
+        "PullRequestEvent": handle_pull_request,
+        "IssueCommentEvent": handle_issue_comment
     }
     handlers.get(event["type"], default_handler)(event)
 
@@ -20,6 +21,9 @@ def handle_pull_request(event):
         print(f"- Opened a pull request to merge '{head}' into '{base}' in repo '{event['repo']['name']}'")
     elif pull_type == "merged":
         print(f"- Completed a pull request to merge '{head}' into '{base}' in repo '{event['repo']['name']}'")
+
+def handle_issue_comment(event):
+    print(f"- Added a comment to '{event['repo']['name']}'")
 
 def default_handler(event):
     print("in default")
